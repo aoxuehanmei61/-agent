@@ -1,0 +1,14 @@
+[
+  {"title":"深度思考：快与慢的心理学","author":"陈明远","category":"心理学","price":"¥39.9","rating":"4.9","blurb":"理解你的大脑如何做决定","tone":"psych","short":"深度\n思考"},
+  {"title":"人类未来：AI 时代的生存指南","author":"张维","category":"科技","price":"¥45.0","rating":"4.7","blurb":"当 AI 改变一切，我们怎么办","tone":"tech","short":"人类\n未来"},
+  {"title":"代码之美：程序员的修炼之道","author":"林浩","category":"技术","price":"¥58.0","rating":"4.8","blurb":"从写代码到写好代码","tone":"tech","short":"代码\n之美"},
+  {"title":"商业的本质","author":"王志强","category":"商业","price":"¥48.0","rating":"4.5","blurb":"看透商业运作的底层逻辑","tone":"business","short":"商业\n的本质"},
+  {"title":"数据驱动决策","author":"孙伟","category":"商业","price":"¥52.0","rating":"4.3","blurb":"用数据代替直觉做决策","tone":"business","short":"数据\n决策"},
+  {"title":"星河彼岸","author":"刘雨晴","category":"科幻","price":"¥36.0","rating":"4.6","blurb":"一段跨越星际的冒险故事","tone":"scifi","short":"星河\n彼岸"},
+  {"title":"时间旅人","author":"何安","category":"科幻","price":"¥38.0","rating":"4.7","blurb":"时间旅行的终极想象","tone":"scifi","short":"时间\n旅人"},
+  {"title":"冥想的力量","author":"李静","category":"身心灵","price":"¥32.0","rating":"4.5","blurb":"在喧嚣中找到内心的平静","tone":"sage","short":"冥想\n的力量"},
+  {"title":"给孩子的宇宙课","author":"赵小星","category":"少儿","price":"¥28.0","rating":"4.8","blurb":"给孩子最好的科学启蒙","tone":"butter","short":"宇宙\n课"},
+  {"title":"厨房里的人类学家","author":"周芳","category":"人文","price":"¥42.0","rating":"4.6","blurb":"用食物理解人类文明","tone":"food","short":"厨房里\n的人类学家"},
+  {"title":"设计的法则","author":"吴美琳","category":"艺术","price":"¥55.0","rating":"4.4","blurb":"好设计背后的 100 个原理","tone":"lavender","short":"设计\n的法则"},
+  {"title":"从0到1：创业思维课","author":"郑凯","category":"商业","price":"¥41.0","rating":"4.2","blurb":"创业者的第一本必读书","tone":"business","short":"从 0\n到 1"}
+]

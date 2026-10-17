@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <title>小书童 · AI 阅读顾问</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <section class="join-screen" id="join-screen" aria-label="加入阅读房间">
+      <form class="join-card" id="join-form">
+        <a class="brand join-brand" href="#home"><span class="brand-mark">巢</span><span class="brand-name">书巢<span class="brand-caption">BOOK NEST</span></span></a>
+        <span class="join-kicker">READ TOGETHER</span>
+        <h1>和朋友一起<br /><span>找到下一本好书。</span></h1>
+        <p>加入一个共享阅读房间。你们可以一起提问、查看推荐，也可以共享阅读资料。</p>
+        <label for="join-name">你的昵称</label>
+        <input id="join-name" name="name" maxlength="32" placeholder="例如：小林" required />
+        <label for="join-room">房间名称</label>
+        <input id="join-room" name="room" maxlength="48" value="书巢读书会" required />
+        <button type="submit" class="join-submit">加入房间 <span>↗</span></button>
+        <small>同一房间名称的成员会共享对话与上传的阅读资料。</small>
+        <div class="join-error" id="join-error" role="alert"></div>
+      </form>
+      <div class="join-art" aria-hidden="true"><div class="join-art-orbit orbit-one"></div><div class="join-art-orbit orbit-two"></div><div class="join-book">📖</div><span class="art-star star-one">✳</span><span class="art-star star-two">✦</span><span class="art-note">READ<br />TOGETHER</span></div>
+    </section>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <a class="brand" href="#home" aria-label="书巢首页">
+          <span class="brand-mark">巢</span>
+          <span class="brand-name">书巢<span class="brand-caption">BOOK NEST</span></span>
+        </a>
+        <div class="nav-label">你的空间</div>
+        <button class="nav-item active" type="button"><span class="nav-icon">✳</span> 阅读顾问 <span class="nav-dot"></span></button>
+        <button class="nav-item" type="button" id="library-nav"><span class="nav-icon">▤</span> 灵感书库 <span class="nav-count">12</span></button>
+        <div class="sidebar-divider"></div>
+        <div class="nav-label">最近聊过</div>
+        <button class="history-item" type="button" data-prompt="最近有什么值得读的书？"><span>◷</span> 找一本最近想读的书</button>
+        <button class="history-item" type="button" data-prompt="推荐几本商业类的书"><span>◷</span> 商业书单怎么选</button>
+        <div class="shared-room">
+          <div class="shared-room-heading"><span>共享房间</span><span class="live-indicator"></span></div>
+          <strong id="room-name">书巢读书会</strong>
+          <div class="participant-stack" id="participant-stack"></div>
+          <button type="button" class="knowledge-button" id="upload-knowledge"><span>＋</span> 添加共享阅读资料</button>
+          <input id="knowledge-file" type="file" accept=".txt,.md,.csv,text/plain,text/markdown" hidden />
+        </div>
+        <div class="sidebar-bottom">
+          <div class="offer-card">
+            <span class="offer-tag">本周书单灵感</span>
+            <strong>给好奇心<br />留一点空白</strong>
+            <span class="offer-art" aria-hidden="true">✳</span>
+            <button type="button" class="offer-link" data-prompt="给我一些本周书单灵感">看看推荐 <span>↗</span></button>
+          </div>
+          <div class="profile-row"><div class="avatar user-avatar">林</div><div><strong>阅读旅人</strong><small>慢慢读，也很好</small></div><button class="more-button" aria-label="更多选项">···</button></div>
+        </div>
+      </aside>
+
+      <main class="main-panel" id="home">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>书巢</span><span class="crumb-slash">/</span><strong>阅读顾问</strong></div>
+          <div class="topbar-actions"><span class="mode-pill"><span class="online-dot"></span><span id="mode-label">本地 RAG</span></span><span class="participant-pill" id="participant-count">1 位成员</span><button class="icon-button" id="leave-room" aria-label="离开房间" title="离开房间">↗</button></div>
+        </header>
+
+        <section class="conversation" aria-live="polite">
+          <div class="welcome-block" id="welcome-block">
+            <div class="welcome-kicker"><span class="kicker-line"></span> YOUR PERSONAL READING GUIDE</div>
+            <h1>好书不必急着找，<br /><span>先从喜欢开始。</span></h1>
+            <p class="welcome-copy">告诉我你最近在想什么、喜欢什么，<br class="desktop-break" />我们一起找到下一本爱不释手的书。</p>
+            <div class="guide-card">
+              <div class="guide-avatar">📖</div>
+              <div><strong>你好呀，我是小书童</strong><p>今天想读点什么？小说、商业、心理学，或者只是想换换心情？</p></div>
+              <span class="guide-sparkle">✳</span>
+            </div>
+            <div class="prompt-label">从一个想法开始</div>
+            <div class="prompt-grid">
+              <button class="prompt-card" type="button" data-prompt="推荐几本适合入门的心理学书"><span class="prompt-icon blush">◉</span><span><strong>读懂自己</strong><small>从心理学开始探索</small></span><span class="prompt-arrow">↗</span></button>
+              <button class="prompt-card" type="button" data-prompt="推荐几本商业类的好书"><span class="prompt-icon sage">↗</span><span><strong>打开新思路</strong><small>商业与思维方式</small></span><span class="prompt-arrow">↗</span></button>
+              <button class="prompt-card" type="button" data-prompt="想读一本轻松有趣的科幻小说"><span class="prompt-icon lavender">✦</span><span><strong>去远方看看</strong><small>来一场科幻冒险</small></span><span class="prompt-arrow">↗</span></button>
+              <button class="prompt-card" type="button" data-prompt="给孩子挑一本有趣的科学启蒙书"><span class="prompt-icon butter">☼</span><span><strong>分享好奇心</strong><small>给孩子的科学启蒙</small></span><span class="prompt-arrow">↗</span></button>
+            </div>
+          </div>
+          <div class="chat-log" id="chat-log" hidden></div>
+        </section>
+
+        <div class="composer-wrap">
+          <form class="composer" id="chat-form">
+            <button type="button" class="attach-button" id="attach-knowledge" aria-label="添加阅读资料" title="上传共享阅读资料">＋</button>
+            <label class="sr-only" for="chat-input">输入你的阅读想法</label>
+            <input id="chat-input" autocomplete="off" placeholder="说说你最近想读什么，或想了解什么…" />
+            <span class="composer-hint">↵ 发送</span>
+            <button class="send-button" type="submit" aria-label="发送">↑</button>
+          </form>
+          <div class="disclaimer">小书童的回复基于本地示例书库生成，书目与活动信息仅供演示。</div>
+        </div>
+      </main>
+
+      <aside class="right-rail">
+        <div class="rail-heading"><div><span class="rail-eyebrow">A LITTLE INSPIRATION</span><h2>今日灵感</h2></div><button class="icon-button subtle" aria-label="更多灵感">···</button></div>
+        <div class="quote-card"><span class="quote-mark">“</span><blockquote>读书不是为了炫耀，而是为了遇见更辽阔的自己。</blockquote><div class="quote-rule"></div><span class="quote-source">今日阅读札记 <span>·</span> 01</span><div class="quote-plant" aria-hidden="true">❋</div></div>
+        <div class="rail-section-title"><h3>大家最近在读</h3><button type="button" id="show-library">全部 <span>↗</span></button></div>
+        <div class="trending-list" id="trending-list"></div>
+        <div class="rail-note"><span class="note-icon">✳</span><p>好书单没有标准答案，<br />只有刚好适合你的那一本。</p></div>
+        <div class="rail-footer"><span>书巢 · 与好书相遇</span><span>本地演示版</span></div>
+      </aside>
+    </div>
+  </body>
+</html>
